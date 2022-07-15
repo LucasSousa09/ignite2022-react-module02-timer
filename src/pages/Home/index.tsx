@@ -1,29 +1,45 @@
+import { Play } from 'phosphor-react'
+import {
+  HomeContainer,
+  TaskContainer,
+  TimerContainer,
+  Colon,
+  Button,
+} from './styles'
+
 export function Home() {
   function handleSubmit() {}
 
   return (
-    <main>
+    <HomeContainer>
       <form onSubmit={handleSubmit}>
-        <div>
+        <TaskContainer>
           <label htmlFor="task">Vou trabalhar em</label>
-          <input id="task" type="text" />
+          <input
+            id="task"
+            type="text"
+            placeholder="Dê um nome para o seu projeto"
+          />
 
           <label htmlFor="minutesAmount">durante</label>
-          <input type="number" id="minutesAmount" />
+          <input type="number" id="minutesAmount" placeholder="00" />
 
           <span>minutos</span>
-        </div>
+        </TaskContainer>
 
-        <div>
+        <TimerContainer>
           <span>0</span>
           <span>0</span>
-          <span>:</span>
+          <Colon>:</Colon>
           <span>0</span>
           <span>0</span>
-        </div>
+        </TimerContainer>
 
-        <button type="submit">Começar</button>
+        <Button type="submit">
+          <Play size={24} weight="bold" />
+          Começar
+        </Button>
       </form>
-    </main>
+    </HomeContainer>
   )
 }
