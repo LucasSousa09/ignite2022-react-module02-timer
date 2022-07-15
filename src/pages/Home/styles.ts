@@ -10,6 +10,7 @@ export const HomeContainer = styled.main`
 export const TaskContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: flex;
 
   gap: 0.5rem;
 
@@ -22,38 +23,52 @@ export const TaskContainer = styled.div`
     font-weight: 700;
     color: ${(props) => props.theme['gray-100']};
   }
+`
 
-  input {
-    background: ${(props) => props.theme['gray-800']};
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 1px solid ${(props) => props.theme['gray-500']};
+const BaseInput = styled.input`
+  background: ${(props) => props.theme['gray-800']};
+  border: 0;
+  border-bottom: 2px solid ${(props) => props.theme['gray-500']};
 
-    font-weight: 700;
+  font-size: 1.125rem;
+  font-weight: 700;
 
-    text-align: center;
+  text-align: center;
 
-    color: ${(props) => props.theme['gray-100']};
+  color: ${(props) => props.theme['gray-100']};
 
-    &:first-of-type {
-      width: 15.5rem;
-    }
+  padding: 0 0.5rem;
 
-    &:last-of-type {
-      width: 4.5rem;
-    }
+  &::placeholder {
+    color: ${(props) => props.theme['gray-500']};
   }
 
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
+  &:focus {
+    box-shadow: none;
+    border-color: ${(props) => props.theme['green-500']};
+  }
+
+  /* &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
 
-  input[type='number'] {
+  &[type='number'] {
     -moz-appearance: textfield;
+  } */
+`
+
+export const TaskInput = styled(BaseInput)`
+  flex: 1;
+
+  &::-webkit-calendar-picker-indicator {
+    display: none !important;
   }
+`
+
+export const MinutesAmountInput = styled(BaseInput)`
+  width: 4.5rem;
 `
 
 export const TimerContainer = styled.div`
@@ -82,7 +97,7 @@ export const Colon = styled.p`
   color: ${(props) => props.theme['green-500']};
 `
 
-export const Button = styled.button`
+export const StartCountdownButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,10 +108,21 @@ export const Button = styled.button`
   width: 100%;
 
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
 
   padding: 1rem;
 
   background-color: ${(props) => props.theme['green-500']};
   color: ${(props) => props.theme['gray-100']};
+
+  transition: background-color 0.2s;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: ${(props) => props.theme['green-700']};
+  }
 `
